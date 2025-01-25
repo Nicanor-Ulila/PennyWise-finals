@@ -129,6 +129,48 @@ def delete_account():
     
     return jsonify({"message": "Account deleted successfully"}), 200
 
+@app.route("/forgot-password", methods=["POST"])
+def forgot_password():
+    # Extract data from the request
+    username = request.json.get("username")
+    email = request.json.get("email")
+    
+    # Validate input
+    if not username or not email:
+        return jsonify({"error": "Username and email are required"}), 400
+
+    # Find the user in the database
+    user = User.query.filter_by(username=username, email=email).first()
+
+    if not user:
+        return jsonify({"error": "User not found with the provided username and email"}), 404
+
+    # Simulate sending a password reset email (replace with actual email logic)
+    # For now, just log a message to the console
+    print(f"Password reset email sent to {email} for user {username}")
+
+    return jsonify({"message": "Password reset instructions sent to your email"}), 200
+
+@app.route("/reset-password", methods=["POST"])
+def reset_password():
+    username = request.json.get("username")
+    new_password = request.json.get("newPassword")
+
+    if not username or not new_password:
+        return jsonify({"error": "Missing username or new password"}), 400
+
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Update the user's password
+    hashed_password = bcrypt.generate_password_hash(new_password)
+    user.password = hashed_password
+    db.session.commit()
+
+    return jsonify({"message": "Password updated successfully!"}), 200
+
 
 
 @app.route("/generate-cobol-file", methods=["POST"])

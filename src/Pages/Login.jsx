@@ -64,7 +64,7 @@ const Login = () => {
             <p className="text-red-500 text-center mb-4">{errorMessage}</p>
           )}
           <p className="font-inter mb-6 text-[#f5e8c7] text-center mt-0 ml-5 pl-6 text-[16px] hover:underline">
-            <a href="/forgot-password">Forgot Password?</a>
+            <a href="/forgot">Forgot Password?</a>
           </p>
           <button
             type="submit"

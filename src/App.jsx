@@ -13,6 +13,8 @@ import PennySave from './Pages/PennySave';
 import PennyPlay from './Pages/PennyPlay';
 import SOA from './Pages/SOA';
 import Settings from './Pages/Settings';
+import Forgot from './Pages/Forgot';
+import NewPass from './Pages/NewPass';
 
 import { TransactionProvider } from './utils/TransactionContext'; // Import the TransactionProvider
 
@@ -39,6 +41,8 @@ function App() {
         <Route path='/pennyplay' element={<PennyPlay/>} />
         <Route path='/soa' element={<SOA/>} />
         <Route path='/settings' element={<Settings/>}/>
+        <Route path='/forgot' element={<Forgot/>}/>
+        <Route path='/newpass' element={<NewPass/>}/>
       </Routes>
     </TransactionProvider>
   );
